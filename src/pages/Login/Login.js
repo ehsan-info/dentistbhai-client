@@ -21,12 +21,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 setError('');
-                if (user.emailVerified) {
-                    navigate(from, { replace: true });
-                }
-                else {
-                    toast.error('Your Email is not verified. Please verify')
-                }
+                navigate(from, { replace: true });
                 console.log(user);
                 form.reset();
             })
@@ -59,7 +54,7 @@ const Login = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicError">
                     <Form.Text className="text-dark font-monospace">
-                        Don't have an Account ? <span><Link to='/registration'>Signup Here !!!</Link></span>
+                        Don't have an Account ? <span><Link to='/signup'>Signup Here !!!</Link></span>
                     </Form.Text>
                 </Form.Group>
                 <Button variant="primary" type="submit">

@@ -32,8 +32,7 @@ const SignUp = () => {
                     setError('');
                     navigate('/login');
                     handleUpdateUserProfile(name, photoURL);
-                    handleEmailVerification();
-                    toast.success('please verify your email address');
+                    toast.success('please login now !!!');
                 })
                 .catch(error => {
                     console.log(error);
@@ -50,11 +49,6 @@ const SignUp = () => {
             photoURL: photoURL
         }
         updateUserProfile(profile)
-            .then(() => { })
-            .catch(error => console.log(error))
-    }
-    const handleEmailVerification = () => {
-        verifyEmail()
             .then(() => { })
             .catch(error => console.log(error))
     }
