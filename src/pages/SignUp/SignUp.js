@@ -9,12 +9,14 @@ import toast from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 const SignUp = () => {
     const [error, setError] = useState('');
     const [accepted, setAccepted] = useState(false);
     const { user, createUser, updateUserProfile, googleProviderLogin, verifyEmail } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
+    useTitle('SignUp');
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;

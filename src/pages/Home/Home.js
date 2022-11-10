@@ -4,6 +4,7 @@ import BrandCarousal from '../../shared/BrandCarousal/BrandCarousal';
 import Footer from '../../shared/Footer/Footer';
 import Header from '../../shared/Header/Header';
 import leftImage from '../../assets/interiorofnewmoderndentalclinicoffice-1.jpg';
+import Services from '../Services/Services';
 const Home = () => {
     return (
         <>
@@ -26,10 +27,12 @@ const Home = () => {
                     </Col>
                 </Row>
             </Container>
+            <Services></Services>
             <div className='d-flex container justify-content-between bg-info p-4'>
                 <h4>Get in touch with us today <span>(02) 9955 4239</span></h4>
                 <button className='btn btn-outline-light'>Make An Appointment</button>
             </div>
+
             <Footer></Footer>
         </>
     );
