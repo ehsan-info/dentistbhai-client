@@ -1,60 +1,50 @@
-import React from 'react';
-import { useState } from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import toast from 'react-hot-toast';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle';
-
-const AddReview = () => {
-    const service = useLoaderData();
+import toast from 'react-hot-toast';
+const UpdateReview = () => {
+    const review = useLoaderData();
     const { user } = useContext(AuthContext);
-    const { _id, service_title } = service;
-    useTitle('Add Review');
-    const handleAddReview = (event) => {
+    const { _id, serviceName, comments } = review;
+    useTitle('Update Review');
+    const navigate = useNavigate();
+    const handleUpdateReview = event => {
+        event.preventDefault();
+        // console.log(user);
         event.preventDefault();
         const form = event.target;
-        const reviewerName = user?.displayName;
-        const email = user?.email || 'unregistered';
         const comments = form.comment.value;
-        const addTime = new Date();
         const review = {
-            service: _id,
-            serviceName: service_title,
-            reviewerName,
-            email,
-            comments,
-            addTime
+            comments
         }
-        fetch('https://dentistbhai-server-ehsan-info.vercel.app/review', {
-            method: 'POST',
+        fetch(`https://dentistbhai-server-ehsan-info.vercel.app/updateReview/${_id}`, {
+            method: 'PUT',
             headers: {
-                'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('dentistBhai-token')}`
+                'content-type': 'application/json'
             },
             body: JSON.stringify(review)
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                if (data.acknowledged) {
-                    form.reset();
-                    toast.success('Review Added Successfully');
+                if (data.modifiedCount > 0) {
+                    toast.success('Updated Successfully');
+                    console.log(data);
+                    navigate('/myReviews')
                 }
             })
-            .catch(error => console.log(error))
+
     }
     return (
         <Container className='mt-4'>
             <Row>
                 <Col lg='8'>
-                    <h2 className=''>Service Name: <span>{service_title}</span></h2>
-                    <h2 className='text-primary'>Add Your Review Here...</h2>
+                    <h2 className=''>Service Name: <span>{serviceName}</span></h2>
                     <div>
-                        <Form onSubmit={handleAddReview}>
+                        <Form onSubmit={handleUpdateReview}>
                             <Form.Group className="mb-3" controlId="formBasicName">
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control type="text" name='name' placeholder="Enter Name" defaultValue={user?.displayName} readOnly />
@@ -66,7 +56,7 @@ const AddReview = () => {
                             <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
                                 <Form.Label>Comments</Form.Label>
 
-                                <Form.Control type="text" name='comment' placeholder="Comments" />
+                                <Form.Control type="text" name='comment' placeholder="Comments" defaultValue={comments} />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicError">
                                 <Form.Text className="text-danger">
@@ -74,7 +64,7 @@ const AddReview = () => {
                                 </Form.Text>
                             </Form.Group>
                             <Button variant="primary" type="submit">
-                                Add Review
+                                Update Review
                             </Button>
                         </Form>
                     </div>
@@ -92,4 +82,4 @@ const AddReview = () => {
     );
 };
 
-export default AddReview;
+export default UpdateReview;

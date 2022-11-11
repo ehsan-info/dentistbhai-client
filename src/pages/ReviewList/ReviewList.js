@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 const ReviewList = ({ review, handleDelete }) => {
     return (
         <div>
@@ -11,8 +12,8 @@ const ReviewList = ({ review, handleDelete }) => {
                     <Card.Text>
                         {review.comments}
                     </Card.Text>
-                    <Button onClick={() => handleDelete(review._id)} variant="primary" className='me-3'>Delete</Button>
-                    <Button variant="primary">Update</Button>
+                    <Button onClick={() => handleDelete(review._id)} variant="light" className='me-3'>Delete</Button>
+                    <Link to={`/updateReview/${review._id}`}><Button variant="light">Edit</Button></Link>
                 </Card.Body>
             </Card>
         </div>
