@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import ReviewList from '../ReviewList/ReviewList';
 const MyReviews = () => {
@@ -13,9 +12,9 @@ const MyReviews = () => {
             }
         })
             .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    return logOut();
-                }
+                // if (res.status === 401 || res.status === 403) {
+                //     return logOut();
+                // }
                 return res.json()
             })
             .then(data => {
@@ -26,7 +25,7 @@ const MyReviews = () => {
     }, [user?.email, logOut])
     return (
         <div className='my-4'>
-            <Card.Title className='mb-4'>All Reviews</Card.Title>
+            <Card.Title className='mb-4'>All Reviews for {user?.email}</Card.Title>
             {
                 reviews.map(review => <ReviewList key={review._id} review={review}></ReviewList>)
             }
