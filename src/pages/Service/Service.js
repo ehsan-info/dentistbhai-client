@@ -10,6 +10,7 @@ const Service = () => {
     const { user } = useContext(AuthContext);
     console.log(user);
     const { _id, service_title, details, image_url, price } = singleService;
+
     return (
         <div>
             <div className="bg-image shadow-2-strong intro-background my-4">
@@ -24,10 +25,23 @@ const Service = () => {
             </div>
             <div className='d-lg-flex d-sm-block gap-3'>
                 <div>
-                    <Image fluid src={image_url} />
-                    <h2>{service_title}</h2>
-                    <p>Price: <span>{price}</span></p>
-                    <p>{details}</p>
+                    <div>
+                        <Image fluid src={image_url} />
+                        <h2>{service_title}</h2>
+                        <p>Price: <span>{price}</span></p>
+                        <p>{details}</p>
+                    </div>
+                    <div>
+                        <Card>
+                            <Card.Header>Featured</Card.Header>
+                            <Card.Body>
+                                <Card.Title>Special title treatment</Card.Title>
+                                <Card.Text>
+                                    With supporting text below as a natural lead-in to additional content.
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
                 </div>
                 <div>
                     <Card className='course-right-info'>
@@ -35,7 +49,7 @@ const Service = () => {
                         <Card.Body>
                             <Card.Title>{user?.displayName}</Card.Title>
                             <Card.Text>
-                                Email: <span>{user.email}</span>
+                                Email: <span>{user?.email}</span>
                             </Card.Text>
                         </Card.Body>
                         <Card.Body>
@@ -43,6 +57,7 @@ const Service = () => {
                         </Card.Body>
                     </Card>
                 </div>
+
             </div>
         </div>
     );

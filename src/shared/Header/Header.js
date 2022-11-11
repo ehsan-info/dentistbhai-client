@@ -51,7 +51,7 @@ const Header = () => {
                             <Nav.Link><Link to='/'><Button variant="light">Home</Button></Link></Nav.Link>
                             <Nav.Link><Link to='/services'><Button variant="light">Services</Button></Link></Nav.Link>
                             <Nav.Link><Link to='/blog'><Button variant="light">Blog</Button></Link></Nav.Link>
-                            <Nav.Link><Link to='/blog'><Button variant="light">My Reviews</Button></Link></Nav.Link>
+                            <Nav.Link><Link to='/myReviews'><Button variant="light">My Reviews</Button></Link></Nav.Link>
                             <Nav.Link><Link to='/blog'><Button variant="light">Add Services</Button></Link></Nav.Link>
                         </Nav>
                         <Nav>
