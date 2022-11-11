@@ -20,12 +20,14 @@ const AddReview = () => {
         const reviewerName = user?.displayName;
         const email = user?.email || 'unregistered';
         const comments = form.comment.value;
+        const addTime = new Date();
         const review = {
             service: _id,
             serviceName: service_title,
             reviewerName,
             email,
-            comments
+            comments,
+            addTime
         }
         fetch('https://dentistbhai-server-ehsan-info.vercel.app/review', {
             method: 'POST',

@@ -14,11 +14,13 @@ const AddServices = () => {
         const price = form.price.value;
         const image_url = form.image_url.value;
         const details = form.details.value;
+        const addTime = new Date();
         const services = {
             service_title,
-            price,
+            price: '$' + price,
             image_url,
-            details
+            details,
+            addTime
         }
         fetch('https://dentistbhai-server-ehsan-info.vercel.app/services', {
             method: 'POST',
