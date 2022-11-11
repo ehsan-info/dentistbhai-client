@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import toast from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
+import { setAuthToken } from '../../api/auth';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 const SignUp = () => {
@@ -32,6 +33,7 @@ const SignUp = () => {
                     const user = result.user;
                     form.reset();
                     setError('');
+                    setAuthToken(user)
                     navigate('/login');
                     handleUpdateUserProfile(name, photoURL);
                     toast.success('please login now !!!');
@@ -62,6 +64,7 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setAuthToken(user);
                 navigate('/courses')
             })
             .catch(error => console.log(error))
