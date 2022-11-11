@@ -9,6 +9,7 @@ import MyReviews from "../../pages/MyReviews/MyReviews";
 import Service from "../../pages/Service/Service";
 import Services from "../../pages/Services/Services";
 import SignUp from "../../pages/SignUp/SignUp";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -43,16 +44,16 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/addReview/:id',
-                element: <AddReview></AddReview>,
+                element: <PrivateRoute><AddReview></AddReview></PrivateRoute>,
                 loader: ({ params }) => fetch(`https://dentistbhai-server-ehsan-info.vercel.app/service/${params.id}`)
             },
             {
                 path: '/myReviews',
-                element: <MyReviews></MyReviews>
+                element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>
             },
             {
                 path: '/addServices',
-                element: <AddServices></AddServices>
+                element: <PrivateRoute><AddServices></AddServices></PrivateRoute>
             }
         ]
     },

@@ -1,6 +1,7 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-const ReviewList = ({ review }) => {
+const ReviewList = ({ review, handleDelete }) => {
     return (
         <div>
             <Card className='my-4'>
@@ -10,6 +11,8 @@ const ReviewList = ({ review }) => {
                     <Card.Text>
                         {review.comments}
                     </Card.Text>
+                    <Button onClick={() => handleDelete(review._id)} variant="primary" className='me-3'>Delete</Button>
+                    <Button variant="primary">Update</Button>
                 </Card.Body>
             </Card>
         </div>
